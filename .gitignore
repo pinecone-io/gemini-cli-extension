@@ -1,0 +1,14 @@
+# gemini-cli settings
+.gemini/
+.env
+
+# GitHub App credentials
+gha-creds-*.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node modules
+node_modules/

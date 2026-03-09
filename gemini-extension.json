@@ -1,0 +1,24 @@
+{
+  "name": "pinecone",
+  "version": "1.0.0",
+  "description": "Pinecone vector database integration for Gemini CLI — semantic search, index management, and RAG workflows.",
+  "settings": [
+    {
+      "name": "Pinecone API Key",
+      "description": "Your Pinecone API key. Get one free at https://app.pinecone.io",
+      "envVar": "PINECONE_API_KEY",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "pinecone": {
+      "command": "npx",
+      "args": ["-y", "@pinecone-database/mcp"],
+      "cwd": "${extensionPath}",
+      "env": {
+        "PINECONE_API_KEY": "${PINECONE_API_KEY}"
+      }
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}

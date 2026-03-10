@@ -33,6 +33,12 @@ jobs:
         uses: google-github-actions/run-gemini-cli@v1
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          settings: |-
+            {
+              "tools": {
+                "allowed": ["write_file", "replace", "run_shell_command"]
+              }
+            }
           prompt: |
             You are adapting incoming Pinecone skill files for a Gemini CLI extension.
 
@@ -93,9 +99,6 @@ jobs:
 
             ## Rules
             - Do not open a new PR
-            - Do not modify files outside skills/
-            - Do not modify gemini-extension.json, GEMINI.md, or commands/
-            - Only modify .md files
         env:
           GH_TOKEN: ${{ github.token }}
 

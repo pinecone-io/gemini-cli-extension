@@ -1,0 +1,13 @@
+# Internal documentation and specs
+CONTEXTUALIZE.md
+spec.md
+TESTING.md
+
+# GitHub Actions workflows
+.github/
+
+# Development artifacts
+.git/
+node_modules/
+.env
+npm-debug.log*

@@ -1,0 +1,6 @@
+{
+  "name": "pinecone-gemini-cli-extension",
+  "version": "1.0.0",
+  "description": "Pinecone vector database integration for Gemini CLI",
+  "private": true
+}

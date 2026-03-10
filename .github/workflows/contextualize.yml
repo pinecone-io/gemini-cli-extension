@@ -1,0 +1,149 @@
+name: Contextualize Incoming Skills
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  contextualize:
+    if: startsWith(github.head_ref, 'sync/skills-')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Skip if last commit was from bot
+        id: check_author
+        run: |
+          AUTHOR=$(git log -1 --format='%an')
+          if [ "$AUTHOR" = "github-actions[bot]" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Gemini CLI
+        if: steps.check_author.outputs.skip != 'true'
+        uses: google-github-actions/run-gemini-cli@v1
+        with:
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          prompt: |
+            You are adapting incoming Pinecone skill files for a Gemini CLI extension.
+
+            ## Step 1: Read the conventions
+
+            Read the file `CONTEXTUALIZE.md` in this repo — it describes exactly how
+            skills must be structured for Gemini CLI extensions.
+
+            Also read `GEMINI.md` and `gemini-extension.json` for context.
+
+            ## Step 2: Find changed files
+
+            Run: git diff --name-only origin/main...HEAD
+
+            ## Step 3: Adapt each skill
+
+            For each changed `.md` file in `skills/`:
+
+            a) Fix SKILL.md frontmatter: ONLY `name` and `description` fields.
+               Remove any extras. Description must be a single line including
+               what the skill does AND when to activate it.
+
+            b) Swap terminology:
+               - "Claude Code" → "Gemini CLI"
+               - "/command" slash commands → natural language descriptions
+               - "AGENTS.md" → "GEMINI.md"
+               - "plugin" → "extension"
+               Keep all Pinecone content, tool names, API refs intact.
+
+            c) Strip `pinecone-` prefix from directories IF present:
+               Use `git mv skills/pinecone-foo skills/foo`
+               Exception: keep prefix if removing it is ambiguous (e.g. pinecone-docs).
+
+            d) Do NOT modify .py files in scripts/ directories.
+
+            e) Ensure file refs use relative paths from skill root.
+
+            f) If SKILL.md exceeds ~500 lines, move content to references/.
+
+            ## Step 4: Commit and push
+
+            Run:
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add skills/
+            git commit -m "contextualize: adapt synced skills for gemini cli extension"
+            git push origin HEAD:${{ github.head_ref }}
+
+            ## Step 5: Comment on PR
+
+            Run: gh pr comment ${{ github.event.pull_request.number }} --body "<your summary>"
+
+            Summarize:
+            - What you changed in each file and why
+            - What you left unchanged
+            - Any overlaps with commands/ to flag for reviewer
+            - Any issues (long files, missing descriptions, naming)
+
+            ## Rules
+            - Do not open a new PR
+            - Do not modify files outside skills/
+            - Do not modify gemini-extension.json, GEMINI.md, or commands/
+            - Only modify .md files
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Validate skill frontmatter
+        if: steps.check_author.outputs.skip != 'true'
+        run: |
+          git pull --rebase origin ${{ github.head_ref }}
+          echo "Validating extension structure..."
+          gemini extensions validate .
+          
+          echo "Validating SKILL.md frontmatter..."
+          ERRORS=0
+          for skill_file in skills/*/SKILL.md; do
+            if [ ! -f "$skill_file" ]; then continue; fi
+            skill_dir=$(dirname "$skill_file")
+            skill_name=$(basename "$skill_dir")
+
+            if ! head -1 "$skill_file" | grep -q '^---$'; then
+              echo "ERROR: $skill_file missing YAML frontmatter"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            FRONTMATTER=$(sed -n '/^---$/,/^---$/p' "$skill_file" | sed '1d;$d')
+
+            if ! echo "$FRONTMATTER" | grep -q '^name:'; then
+              echo "ERROR: $skill_file missing 'name' in frontmatter"
+              ERRORS=$((ERRORS + 1))
+            fi
+            if ! echo "$FRONTMATTER" | grep -q '^description:'; then
+              echo "ERROR: $skill_file missing 'description' in frontmatter"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            EXTRA=$(echo "$FRONTMATTER" | grep -v '^name:' | grep -v '^description:' | grep -v '^$' | grep -v '^  ' || true)
+            if [ -n "$EXTRA" ]; then
+              echo "WARNING: $skill_file has extra frontmatter fields:"
+              echo "$EXTRA"
+            fi
+
+            LINES=$(wc -l < "$skill_file")
+            if [ "$LINES" -gt 500 ]; then
+              echo "WARNING: $skill_file is $LINES lines (recommended < 500)"
+            fi
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo "Found $ERRORS frontmatter errors"
+            exit 1
+          fi
+          echo "All skill files validated successfully"

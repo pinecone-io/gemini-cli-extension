@@ -1,5 +1,5 @@
 ---
-name: pinecone-help
+name: help
 description: Overview of all available Pinecone skills and what a user needs to get started. Invoke when a user asks what skills are available, how to get started with Pinecone, or what they need to set up before using any Pinecone skill.
 ---
 

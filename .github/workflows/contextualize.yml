@@ -33,7 +33,6 @@ jobs:
         uses: google-github-actions/run-gemini-cli@v0.1.20
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
-          gemini_model: gemini-2.5-flash
           settings: |-
             {
               "tools": {
@@ -90,7 +89,7 @@ jobs:
 
             ## Step 5: Write PR summary to file
 
-            Write your summary to /tmp/pr_summary.md using write_file.
+            Write your summary to /home/runner/.gemini/tmp/gemini-cli-extension/pr_summary.md using write_file.
             Include:
             - What you changed in each file and why
             - What you left unchanged
@@ -106,8 +105,8 @@ jobs:
       - name: Post PR comment
         if: steps.check_author.outputs.skip != 'true'
         run: |
-          if [ -f /tmp/pr_summary.md ]; then
-            gh pr comment ${{ github.event.pull_request.number }} --body-file /tmp/pr_summary.md
+          if [ -f /home/runner/.gemini/tmp/gemini-cli-extension/pr_summary.md ]; then
+            gh pr comment ${{ github.event.pull_request.number }} --body-file /home/runner/.gemini/tmp/gemini-cli-extension/pr_summary.md
           else
             echo "No summary file found, skipping comment"
           fi

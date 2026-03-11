@@ -1,6 +1,6 @@
 ---
 name: pinecone-quickstart
-description: Interactive Pinecone quickstart for new developers. Choose between two paths - Database (create an integrated index, upsert data, and query using Pinecone MCP + Python) or Assistant (create a Pinecone Assistant for document Q&A). Use when a user wants to get started with Pinecone for the first time or wants a guided tour of Pinecone's tools.
+description: Interactive Pinecone quickstart for new developers, offering paths for building a vector search index or a document Q&A assistant. Activate when a user wants to get started with Pinecone for the first time or needs a guided tour.
 ---
 
 # Pinecone Quickstart
@@ -164,34 +164,34 @@ Before anything else, ask the user if they have files to upload. Pinecone Assist
 
 ### Step 2 – Create an Assistant
 
-Invoke `pinecone-assistant` or run (add `--env-file .env` if using a `.env` file):
+Invoke `assistant` or run (add `--env-file .env` if using a `.env` file):
 ```bash
-uv run ../pinecone-assistant/scripts/create.py --name my-assistant
+uv run ../assistant/scripts/create.py --name my-assistant
 ```
 
 Explain: The assistant is a fully managed RAG service — upload documents, ask questions, get cited answers.
 
 ### Step 3 – Upload Documents
 
-Invoke `pinecone-assistant` or run (add `--env-file .env` if using a `.env` file):
+Invoke `assistant` or run (add `--env-file .env` if using a `.env` file):
 ```bash
-uv run ../pinecone-assistant/scripts/upload.py --assistant my-assistant --source ./your-docs
+uv run ../assistant/scripts/upload.py --assistant my-assistant --source ./your-docs
 ```
 
 Explain: Pinecone handles chunking, embedding, and indexing automatically — no configuration needed.
 
 ### Step 4 – Chat with the Assistant
 
-Invoke `pinecone-assistant` or run (add `--env-file .env` if using a `.env` file):
+Invoke `assistant` or run (add `--env-file .env` if using a `.env` file):
 ```bash
-uv run ../pinecone-assistant/scripts/chat.py --assistant my-assistant --message "What are the main topics in these documents?"
+uv run ../assistant/scripts/chat.py --assistant my-assistant --message "What are the main topics in these documents?"
 ```
 
 Explain: Responses include citations with source file and page number.
 
 ### Next Steps for Assistant
 
-- Invoke `pinecone-assistant` to keep the assistant up to date as documents change
+- Invoke `assistant` to keep the assistant up to date as documents change
 - Use the assistant skill to retrieve raw context snippets for custom workflows
 - Every assistant is also an MCP server — see https://docs.pinecone.io/guides/assistant/mcp-server
 

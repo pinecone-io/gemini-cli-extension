@@ -1,6 +1,6 @@
 ---
 name: pinecone-docs
-description: Curated documentation reference for developers building with Pinecone. Contains links to official docs organized by topic and data format references. Use when writing Pinecone code, looking up API parameters, or needing the correct format for vectors or records.
+description: Curated documentation reference for developers building with Pinecone, including links to official docs and data format references. Activate when the user asks for Pinecone documentation, API parameters, or data formats.
 ---
 
 # Pinecone Developer Reference
@@ -22,7 +22,7 @@ Use this as a last resort if you cannot find the relevant page below.
 
 | Topic | URL |
 |---|---|
-| Quickstart for all languages and coding environments (Cursor, Claude Code, n8n, Python, JavaScript, Java, Go, C#) | https://docs.pinecone.io/guides/get-started/quickstart |
+| Quickstart for all languages and coding environments (Cursor, Gemini CLI, n8n, Python, JavaScript, Java, Go, C#) | https://docs.pinecone.io/guides/get-started/quickstart |
 | Pinecone concepts — namespaces, terminology, and key database concepts | https://docs.pinecone.io/guides/get-started/concepts |
 | Data modeling for text and vectors | https://docs.pinecone.io/guides/index-data/data-modeling |
 | Architecture of Pinecone | https://docs.pinecone.io/guides/get-started/database-architecture |

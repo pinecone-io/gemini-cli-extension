@@ -1,7 +1,6 @@
 ---
-name: pinecone-cli
-description: Guide for using the Pinecone CLI (pc) to manage Pinecone resources from the terminal. The CLI supports ALL index types (standard, integrated, sparse) and all vector operations — unlike the MCP which only supports integrated indexes. Use for batch operations, vector management, backups, namespaces, CI/CD automation, and full control over Pinecone resources.
-argument-hint: install | auth | index [op] | vector [op] | backup | namespace
+name: cli
+description: Guide for using the Pinecone CLI (pc) to manage Pinecone resources from the terminal. The CLI supports ALL index types (standard, integrated, sparse) and all vector operations. Activate when the user asks about using the Pinecone CLI, managing indexes, vectors, backups, or namespaces.
 ---
 
 # Pinecone CLI (`pc`)

@@ -33,6 +33,7 @@ jobs:
         uses: google-github-actions/run-gemini-cli@v0.1.20
         with:
           gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          gemini_model: gemini-2.5-flash
           settings: |-
             {
               "tools": {
@@ -101,9 +102,12 @@ jobs:
             - Do not open a new PR
         env:
           GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Validate skill frontmatter
         if: steps.check_author.outputs.skip != 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           git pull --rebase origin ${{ github.head_ref }}
           echo "Validating extension structure..."

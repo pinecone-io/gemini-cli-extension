@@ -45,7 +45,7 @@ jobs:
 
             ## Step 1: Read the conventions
 
-            Read the file `CONTEXTUALIZE.md` in this repo — it describes exactly how
+            Read the file `.github/workflows/CONTEXTUALIZE.md` in this repo — it describes exactly how
             skills must be structured for Gemini CLI extensions.
 
             Also read `GEMINI.md` and `gemini-extension.json` for context.
@@ -88,11 +88,10 @@ jobs:
             git commit -m "contextualize: adapt synced skills for gemini cli extension"
             git push origin HEAD:${{ github.head_ref }}
 
-            ## Step 5: Comment on PR
+            ## Step 5: Write PR summary to file
 
-            Run: gh pr comment ${{ github.event.pull_request.number }} --body "<your summary>"
-
-            Summarize:
+            Write your summary to /tmp/pr_summary.md using write_file.
+            Include:
             - What you changed in each file and why
             - What you left unchanged
             - Any overlaps with commands/ to flag for reviewer
@@ -103,6 +102,17 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Post PR comment
+        if: steps.check_author.outputs.skip != 'true'
+        run: |
+          if [ -f /tmp/pr_summary.md ]; then
+            gh pr comment ${{ github.event.pull_request.number }} --body-file /tmp/pr_summary.md
+          else
+            echo "No summary file found, skipping comment"
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Validate skill frontmatter
         if: steps.check_author.outputs.skip != 'true'

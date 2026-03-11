@@ -1,7 +1,6 @@
 ---
 name: pinecone-query
 description: Query integrated indexes using text with Pinecone MCP. IMPORTANT - This skill ONLY works with integrated indexes (indexes with built-in Pinecone embedding models like multilingual-e5-large). For standard indexes or advanced vector operations, use the CLI skill instead. Requires PINECONE_API_KEY environment variable and Pinecone MCP server to be configured.
-argument-hint: query [q] index [indexName] namespace [ns] topK [k] reranker [rerankModel]
 ---
 
 # Pinecone Query Skill
@@ -60,11 +59,11 @@ Utilize Pinecone MCP's `search-records` tool to search for records within a spec
 
 **`PINECONE_API_KEY` is required.** Get a free key at https://app.pinecone.io/?sessionType=signup
 
-If you get an access error, the key is likely missing. Ask the user to set it and restart their IDE or agent session:
+If you get an access error, the key is likely missing. Ask the user to set it and restart their Gemini CLI session:
 - Terminal: `export PINECONE_API_KEY="your-key"`
 - IDE without shell inheritance: add `PINECONE_API_KEY=your-key` to a `.env` file
 
-**IMPORTANT** At the moment, the /query command can only be used with integrated indexes, which use hosted Pinecone embedding models to embed and search for data.
+**IMPORTANT** At the moment, query operations can only be used with integrated indexes, which use hosted Pinecone embedding models to embed and search for data.
 If a user attempts to query an index that uses a third party API model such as OpenAI, or HuggingFace embedding models, remind them that this capability is not available yet
 with the Pinecone MCP server.
 

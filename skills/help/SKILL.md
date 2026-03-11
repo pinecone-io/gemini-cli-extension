@@ -25,7 +25,7 @@ Here's everything you need to get started and a summary of all available skills.
 
 | Tool | What it enables | Install |
 |---|---|---|
-| **Pinecone MCP server** | Use Pinecone directly inside your AI agent/IDE without writing code | [Setup guide](https://docs.pinecone.io/guides/operations/mcp-server#tools) |
+| **Pinecone MCP server** | Use Pinecone directly inside your Gemini CLI without writing code | [Setup guide](https://docs.pinecone.io/guides/operations/mcp-server#tools) |
 | **Pinecone CLI (`pc`)** | Manage all index types from the terminal, batch operations, backups, CI/CD | `brew tap pinecone-io/tap && brew install pinecone-io/tap/pinecone` |
 | **uv** | Run the packaged Python scripts included in these skills | [Install uv](https://docs.astral.sh/uv/getting-started/installation/) |
 

@@ -5,7 +5,7 @@ description: Reference for the Pinecone MCP server tools. Documents all availabl
 
 # Pinecone MCP Tools Reference
 
-The Pinecone MCP server exposes the following tools to AI agents and IDEs. For setup and installation instructions, see the [MCP server guide](https://docs.pinecone.io/guides/operations/mcp-server#tools).
+The Pinecone MCP server exposes the following tools to Gemini CLI. For setup and installation instructions, see the [MCP server guide](https://docs.pinecone.io/guides/operations/mcp-server#tools).
 
 > **Key Limitation:** The Pinecone MCP only supports **integrated indexes** — indexes created with a built-in Pinecone embedding model. It does not work with standard indexes using external embedding models. For those, use the Pinecone CLI.
 

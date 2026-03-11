@@ -205,11 +205,11 @@ Terminal environments:
 ```bash
 export PINECONE_API_KEY="your-key"
 ```
-IDEs that don't inherit shell variables: create a `.env` file in the project root:
+Gemini CLI sessions that don't inherit shell variables: create a `.env` file in the project root:
 ```
 PINECONE_API_KEY=your-key
 ```
-Then use `uv run --env-file .env` when running scripts. Restart your IDE/agent session after setting.
+Then use `uv run --env-file .env` when running scripts. Restart your Gemini CLI session after setting.
 
 **MCP tools not available**
 - Verify the Pinecone MCP server is configured in your IDE's MCP settings

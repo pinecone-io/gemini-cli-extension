@@ -35,27 +35,27 @@ Here's everything you need to get started and a summary of all available skills.
 
 | Skill | What it does |
 |---|---|
-| `pinecone-quickstart` | Step-by-step onboarding — create an index, upload data, and run your first search |
-| `pinecone-query` | Search integrated indexes using natural language text via the Pinecone MCP |
+| `quickstart` | Step-by-step onboarding — create an index, upload data, and run your first search |
+| `query` | Search integrated indexes using natural language text via the Pinecone MCP |
 | `pinecone-cli` | Use the Pinecone CLI (`pc`) for terminal-based index and vector management |
-| `pinecone-assistant` | Create, manage, and chat with Pinecone Assistants for document Q&A with citations |
-| `pinecone-mcp` | Reference for all Pinecone MCP server tools and their parameters |
+| `assistant` | Create, manage, and chat with Pinecone Assistants for document Q&A with citations |
+| `mcp` | Reference for all Pinecone MCP server tools and their parameters |
 | `pinecone-docs` | Curated links to official Pinecone documentation, organized by topic |
 
 ---
 
 ## Which skill should I use?
 
-**Just getting started?** → `pinecone-quickstart`
+**Just getting started?** → `quickstart`
 
 **Want to search an index you already have?**
-- Integrated index (built-in embedding model) → `pinecone-query` (uses MCP)
+- Integrated index (built-in embedding model) → `query` (uses MCP)
 - Any other index type → `pinecone-cli`
 
-**Working with documents and Q&A?** → `pinecone-assistant`
+**Working with documents and Q&A?** → `assistant`
 
 **Need to manage indexes, bulk upload vectors, or automate workflows?** → `pinecone-cli`
 
 **Looking up API parameters or SDK usage?** → `pinecone-docs`
 
-**Need to understand what MCP tools are available?** → `pinecone-mcp`
+**Need to understand what MCP tools are available?** → `mcp`

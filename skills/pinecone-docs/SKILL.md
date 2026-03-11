@@ -22,7 +22,7 @@ Use this as a last resort if you cannot find the relevant page below.
 
 | Topic | URL |
 |---|---|
-| Quickstart for all languages and coding environments (Cursor, Claude Code, n8n, Python, JavaScript, Java, Go, C#) | https://docs.pinecone.io/guides/get-started/quickstart |
+| Quickstart for all languages and coding environments (Cursor, Gemini CLI, n8n, Python, JavaScript, Java, Go, C#) | https://docs.pinecone.io/guides/get-started/quickstart |
 | Pinecone concepts — namespaces, terminology, and key database concepts | https://docs.pinecone.io/guides/get-started/concepts |
 | Data modeling for text and vectors | https://docs.pinecone.io/guides/index-data/data-modeling |
 | Architecture of Pinecone | https://docs.pinecone.io/guides/get-started/database-architecture |

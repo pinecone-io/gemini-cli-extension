@@ -1,5 +1,5 @@
 ---
-name: pinecone-assistant
+name: assistant
 description: Create, manage, and chat with Pinecone Assistants for document Q&A with citations. Handles all assistant operations - create, upload, sync, chat, context retrieval, and list. Recognizes natural language like "create an assistant from my docs", "ask my assistant about X", or "upload my docs to Pinecone".
 ---
 

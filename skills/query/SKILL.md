@@ -37,7 +37,7 @@ Utilize Pinecone MCP's `search-records` tool to search for records within a spec
 **IMPORTANT: Before proceeding, verify the Pinecone MCP tools are available.** If MCP tools are not accessible:
 - Inform the user that the Pinecone MCP server needs to be configured
 - Check if `PINECONE_API_KEY` environment variable is set
-- Direct them to the MCP setup documentation or the `pinecone-help` skill
+- Direct them to the MCP setup documentation or the `help` skill
 
 1. Parse the user's input for:
    - `query` (required): The text to search for.

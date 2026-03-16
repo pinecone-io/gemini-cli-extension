@@ -51,7 +51,7 @@ def main(
 
     try:
         # Initialize Pinecone client
-        pc = Pinecone(api_key=api_key, source_tag="claude_code_plugin:assistant")
+        pc = Pinecone(api_key=api_key, source_tag="gemini_cli:assistant")
         asst = pc.assistant.Assistant(assistant_name=assistant)
 
         # Display query

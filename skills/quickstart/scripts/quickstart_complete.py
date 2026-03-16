@@ -12,7 +12,7 @@ api_key = os.environ.get("PINECONE_API_KEY")
 if not api_key:
     raise ValueError("PINECONE_API_KEY environment variable not set")
 
-pc = Pinecone(api_key=api_key, source_tag="pinecone_skills:index_quickstart")
+pc = Pinecone(api_key=api_key, source_tag="gemini_cli:quickstart_complete")
 
 # 1. Create a serverless index with an integrated embedding model
 index_name = "quickstart"

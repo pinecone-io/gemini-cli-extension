@@ -69,7 +69,7 @@ def main(
     try:
         # Initialize Pinecone client
         with console.status(f"[bold blue]Creating assistant '{name}'...[/bold blue]"):
-            pc = Pinecone(api_key=api_key, source_tag="claude_code_plugin:assistant")
+            pc = Pinecone(api_key=api_key, source_tag="gemini_cli:assistant")
 
             # Create assistant
             assistant = pc.assistant.create_assistant(
@@ -77,7 +77,7 @@ def main(
                 instructions=instructions if instructions else None,
                 region=region,
                 timeout=timeout,
-                metadata={"agentic-ide-source":"claude-code-plugin"}
+                metadata={"agentic-ide-source":"gemini-cli"}
             )
 
         # Success message

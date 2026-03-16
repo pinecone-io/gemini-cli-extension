@@ -22,7 +22,7 @@ def main(
         typer.echo("Error: PINECONE_API_KEY environment variable not set", err=True)
         raise typer.Exit(1)
 
-    pc = Pinecone(api_key=api_key, source_tag="pinecone_skills:upsert")
+    pc = Pinecone(api_key=api_key, source_tag="gemini_cli:upsert")
 
     records = [
         # Health / feeling unwell

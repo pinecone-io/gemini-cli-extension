@@ -2,7 +2,7 @@ name: Contextualize Incoming Skills
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened]
 
 jobs:
   contextualize:

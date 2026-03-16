@@ -19,13 +19,14 @@ Here's everything you need to get started and a summary of all available skills.
   ```bash
   export PINECONE_API_KEY="your-key"
   ```
-  Or add it to a `.env` file if your IDE doesn't inherit shell variables: `PINECONE_API_KEY=your-key`
+
+
 
 ### Optional (unlock more capabilities)
 
 | Tool | What it enables | Install |
 |---|---|---|
-| **Pinecone MCP server** | Use Pinecone directly inside your AI agent/IDE without writing code | [Setup guide](https://docs.pinecone.io/guides/operations/mcp-server#tools) |
+| **Pinecone MCP server** | Use Pinecone directly inside your AI agent/IDE without writing code | Already installed for you in Gemini CLI! |
 | **Pinecone CLI (`pc`)** | Manage all index types from the terminal, batch operations, backups, CI/CD | `brew tap pinecone-io/tap && brew install pinecone-io/tap/pinecone` |
 | **uv** | Run the packaged Python scripts included in these skills | [Install uv](https://docs.astral.sh/uv/getting-started/installation/) |
 
@@ -59,3 +60,7 @@ Here's everything you need to get started and a summary of all available skills.
 **Looking up API parameters or SDK usage?** → `pinecone-docs`
 
 **Need to understand what MCP tools are available?** → `mcp`
+
+**Issues using Pinecone here?**
+- Make sure you export your API key in addition to configuring it for usage with the MCP. If you don't, you won't be able to run the packaged scripts here.
+- If skills are not being automatically invoked, you may need to explicitly inform Gemini CLI of your intent. Try saying "Use the quickstart skill", or "Use the Pinecone Docs skill", when having issues routing requests.
